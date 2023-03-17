@@ -29,7 +29,7 @@ final class ResetRequest implements ApiRequestInterface
         ];
     }
 
-    public function getBody()
+    public function getBody(): mixed
     {
         return null;
     }
