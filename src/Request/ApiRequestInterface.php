@@ -10,7 +10,10 @@ interface ApiRequestInterface
 
     public function getRoute(): string;
 
+    /**
+     * @return array<mixed>
+     */
     public function getQueryParameters(): array;
 
-    public function getBody();
+    public function getBody(): mixed;
 }
