@@ -7,7 +7,9 @@ namespace P7v\SmockerClient;
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Source;
 use CuyZ\Valinor\MapperBuilder;
+use P7v\SmockerClient\Request\GetMocksRequest;
 use P7v\SmockerClient\Request\ResetRequest;
+use P7v\SmockerClient\Response\MocksResponse;
 use P7v\SmockerClient\Response\ResetResponse;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -29,6 +31,21 @@ final class SmockerClient
         return $this->mapResponse(ResetResponse::class, $response);
     }
 
+    public function getMocks(GetMocksRequest $getMocksRequest): MocksResponse
+    {
+        $response = $this->client->sendRequest(
+            $this->requestMapper->map($getMocksRequest),
+        );
+
+        try {
+            return $this->mapResponse(MocksResponse::class, $response);
+        } catch (MappingError $error) {
+            $messages = $error->messages();
+
+            var_dump($messages);die;
+        }
+    }
+
     /**
      * @template T of object
      *
@@ -41,6 +58,7 @@ final class SmockerClient
     private function mapResponse(string $signature, ResponseInterface $response): object
     {
         return (new MapperBuilder())
+            ->allowSuperfluousKeys()
             ->mapper()
             ->map(
                 $signature,
