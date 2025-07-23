@@ -8,5 +8,6 @@ final class Mock
 {
     public function __construct(
         public readonly Request $request,
+        public readonly Response $response,
     ) {}
 }

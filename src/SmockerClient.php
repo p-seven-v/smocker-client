@@ -42,7 +42,11 @@ final class SmockerClient
         } catch (MappingError $error) {
             $messages = $error->messages();
 
-            var_dump($messages);die;
+            foreach ($messages as $message) {
+                var_dump($message);
+            }
+
+            die;
         }
     }
 
@@ -59,10 +63,11 @@ final class SmockerClient
     {
         return (new MapperBuilder())
             ->allowSuperfluousKeys()
+            ->allowUndefinedValues()
             ->mapper()
             ->map(
                 $signature,
-                Source::json((string)$response->getBody())
+                Source::json(trim((string)$response->getBody()))
             );
 
     }
