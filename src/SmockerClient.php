@@ -14,6 +14,9 @@ use P7v\SmockerClient\Response\ResetResponse;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @api
+ */
 final class SmockerClient
 {
     public function __construct(

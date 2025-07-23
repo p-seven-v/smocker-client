@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace P7v\SmockerClient\Request;
 
+use Override;
+
 final class ResetRequest implements ApiRequestInterface
 {
     use PostMethodTrait;
@@ -17,11 +19,13 @@ final class ResetRequest implements ApiRequestInterface
         return $this->force;
     }
 
+    #[Override]
     public function getRoute(): string
     {
         return 'reset';
     }
 
+    #[Override]
     public function getQueryParameters(): array
     {
         return [
@@ -29,6 +33,7 @@ final class ResetRequest implements ApiRequestInterface
         ];
     }
 
+    #[Override]
     public function getBody(): mixed
     {
         return null;

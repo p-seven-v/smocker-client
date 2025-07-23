@@ -10,6 +10,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
+/**
+ * @internal
+ */
 final class PsrRequestMapper
 {
     public function __construct(
