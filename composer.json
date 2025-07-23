@@ -20,7 +20,7 @@
     "require-dev": {
         "guzzlehttp/guzzle": "^7.9",
         "guzzlehttp/psr7": "^2.7",
-        "phpstan/phpstan": "^2.1.18",
+        "phpstan/phpstan": "^2.1.19",
         "vimeo/psalm": "^6.5"
     },
     "autoload": {
