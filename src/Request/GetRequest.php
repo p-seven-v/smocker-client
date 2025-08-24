@@ -6,11 +6,20 @@ namespace P7v\SmockerClient\Request;
 
 use Override;
 
-trait GetMethodTrait
+abstract class GetRequest implements ApiRequestInterface
 {
     #[Override]
     public function getMethod(): string
     {
         return 'GET';
+    }
+
+    /**
+     * @return null
+     */
+    #[Override]
+    public function getBody(): mixed
+    {
+        return null;
     }
 }

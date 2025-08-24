@@ -7,10 +7,8 @@ namespace P7v\SmockerClient\Request;
 /**
  * @api
  */
-final class GetMocksRequest implements ApiRequestInterface
+final class GetMocksRequest extends GetRequest
 {
-    use GetMethodTrait;
-
     public function __construct(
         public readonly ?string $id = null,
         public readonly ?string $session = null,

@@ -9,17 +9,10 @@ use Override;
 /**
  * @api
  */
-final class ResetRequest implements ApiRequestInterface
+final class ResetRequest extends PostRequest
 {
-    use PostMethodTrait;
-
     public function __construct(private bool $force = false)
     {
-    }
-
-    public function isForced(): bool
-    {
-        return $this->force;
     }
 
     #[Override]

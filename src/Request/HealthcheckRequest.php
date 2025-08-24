@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace P7v\SmockerClient\Request;
 
-final class HealthcheckRequest implements ApiRequestInterface
+final class HealthcheckRequest extends GetRequest
 {
-    use GetMethodTrait;
-
     public function getRoute(): string
     {
         return '/version';
@@ -16,13 +14,5 @@ final class HealthcheckRequest implements ApiRequestInterface
     public function getQueryParameters(): array
     {
         return [];
-    }
-
-    /**
-     * @return null
-     */
-    public function getBody(): mixed
-    {
-        return null;
     }
 }

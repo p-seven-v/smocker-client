@@ -8,6 +8,7 @@ use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Exception\InvalidSource;
 use CuyZ\Valinor\Mapper\Source\Source;
 use CuyZ\Valinor\MapperBuilder;
+use P7v\SmockerClient\Exceptions\ResponseException;
 use P7v\SmockerClient\Request\GetMocksRequest;
 use P7v\SmockerClient\Request\HealthcheckRequest;
 use P7v\SmockerClient\Request\ResetRequest;
@@ -47,11 +48,7 @@ final class SmockerClient
         } catch (MappingError $error) {
             $messages = $error->messages();
 
-            foreach ($messages as $message) {
-                var_dump($message);
-            }
-
-            die;
+            throw new ResponseException(implode(',', $messages->toArray()), previous: $error);
         }
     }
 
@@ -66,12 +63,7 @@ final class SmockerClient
         } catch (MappingError $error) {
             $messages = $error->messages();
 
-            foreach ($messages as $message) {
-                echo $message;
-                echo "\n";
-            }
-
-            die;
+            throw new ResponseException(implode(',', $messages->toArray()), previous: $error);
         }
     }
 

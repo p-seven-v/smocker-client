@@ -6,8 +6,7 @@ namespace P7v\SmockerClient\Request;
 
 use Override;
 
-trait PostMethodTrait
-{
+abstract class PostRequest implements ApiRequestInterface {
     #[Override]
     public function getMethod(): string
     {
