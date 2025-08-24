@@ -6,6 +6,9 @@ namespace P7v\SmockerClient\Request;
 
 use Override;
 
+/**
+ * @api
+ */
 final class ResetRequest implements ApiRequestInterface
 {
     use PostMethodTrait;

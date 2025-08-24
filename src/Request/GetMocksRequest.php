@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace P7v\SmockerClient\Request;
 
+/**
+ * @api
+ */
 final class GetMocksRequest implements ApiRequestInterface
 {
     use GetMethodTrait;
