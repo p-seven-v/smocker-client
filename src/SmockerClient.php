@@ -18,9 +18,6 @@ use P7v\SmockerClient\Response\ResetResponse;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * @api
- */
 final class SmockerClient
 {
     public function __construct(
@@ -28,6 +25,9 @@ final class SmockerClient
         private PsrRequestMapper $requestMapper,
     ) {}
 
+    /**
+     * @api
+     */
     public function reset(ResetRequest $resetRequest): ResetResponse
     {
         $response = $this->client->sendRequest(
@@ -37,6 +37,9 @@ final class SmockerClient
         return $this->mapResponse(ResetResponse::class, $response);
     }
 
+    /**
+     * @api
+     */
     public function getMocks(GetMocksRequest $getMocksRequest): MocksResponse
     {
         $response = $this->client->sendRequest(
@@ -52,6 +55,9 @@ final class SmockerClient
         }
     }
 
+    /**
+     * @api
+     */
     public function healthcheck(HealthcheckRequest $healthcheckRequest): HealthcheckResponse
     {
         $response = $this->client->sendRequest(
