@@ -18,14 +18,20 @@
         "symfony/polyfill-php83": "^1.32"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^7.9",
-        "guzzlehttp/psr7": "^2.7",
+        "guzzlehttp/guzzle": "^7.9.3",
+        "guzzlehttp/psr7": "^2.7.1",
         "phpstan/phpstan": "^2.1.19",
+        "phpunit/phpunit": "^10.5",
         "vimeo/psalm": "^6.5"
     },
     "autoload": {
         "psr-4": {
             "P7v\\SmockerClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "P7v\\SmockerClient\\Tests\\": "tests/"
         }
     },
     "config": {
