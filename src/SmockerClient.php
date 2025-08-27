@@ -21,8 +21,8 @@ use Psr\Http\Message\ResponseInterface;
 final class SmockerClient
 {
     public function __construct(
-        private ClientInterface $client,
-        private PsrRequestMapper $requestMapper,
+        private readonly ClientInterface $client,
+        private readonly PsrRequestMapper $requestMapper,
     ) {}
 
     /**
