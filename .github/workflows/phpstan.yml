@@ -5,13 +5,13 @@ on:
   - pull_request
 
 jobs:
-  tests:
+  phpstan:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
         php:
-          - 8.0
+          - 8.1
         dependencies:
           - locked
 
@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -29,7 +29,7 @@ jobs:
           coverage: none
 
       - name: Composer install
-        uses: ramsey/composer-install@v2
+        uses: ramsey/composer-install@v3
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 

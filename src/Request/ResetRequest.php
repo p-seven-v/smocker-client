@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace P7v\SmockerClient\Request;
 
-final class ResetRequest implements ApiRequestInterface
+use Override;
+
+/**
+ * @api
+ */
+final class ResetRequest extends PostRequest
 {
-    use PostMethodTrait;
+    public function __construct(
+        private readonly bool $force = false,
+    ) {}
 
-    public function __construct(private bool $force = false)
-    {
-    }
-
-    public function isForced(): bool
-    {
-        return $this->force;
-    }
-
+    #[Override]
     public function getRoute(): string
     {
         return 'reset';
     }
 
+    #[Override]
     public function getQueryParameters(): array
     {
         return [
@@ -29,6 +29,7 @@ final class ResetRequest implements ApiRequestInterface
         ];
     }
 
+    #[Override]
     public function getBody(): mixed
     {
         return null;

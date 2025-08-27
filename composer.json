@@ -11,21 +11,33 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
-        "cuyz/valinor": "^1.0",
+        "php": "~8.1.17 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+        "cuyz/valinor": "^2.0",
         "psr/http-client": "^1.0",
-        "psr/http-factory": "^1.0"
+        "psr/http-factory": "^1.0",
+        "symfony/polyfill-php83": "^1.32"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.10",
-        "vimeo/psalm": "^5.8"
+        "guzzlehttp/guzzle": "^7.9.3",
+        "guzzlehttp/psr7": "^2.7.1",
+        "phpstan/phpstan": "^2.1.19",
+        "phpunit/phpunit": "^10.5",
+        "vimeo/psalm": "^6.5"
     },
     "autoload": {
         "psr-4": {
             "P7v\\SmockerClient\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "P7v\\SmockerClient\\Tests\\": "tests/"
+        }
+    },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "8.1.17"
+        }
     }
 }
