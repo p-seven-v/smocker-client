@@ -11,9 +11,9 @@ use Override;
  */
 final class ResetRequest extends PostRequest
 {
-    public function __construct(private bool $force = false)
-    {
-    }
+    public function __construct(
+        private readonly bool $force = false,
+    ) {}
 
     #[Override]
     public function getRoute(): string
