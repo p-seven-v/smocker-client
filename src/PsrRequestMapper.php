@@ -9,6 +9,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use Psr\Http\Message\UriInterface;
 
 /**
  * @internal
@@ -16,11 +17,10 @@ use Psr\Http\Message\UriFactoryInterface;
 final class PsrRequestMapper
 {
     public function __construct(
-        private RequestFactoryInterface $requestFactory,
-        private UriFactoryInterface $uriFactory,
-        private StreamFactoryInterface $streamFactory,
-    ) {
-    }
+        private readonly RequestFactoryInterface $requestFactory,
+        private readonly UriFactoryInterface $uriFactory,
+        private readonly StreamFactoryInterface $streamFactory,
+    ) {}
 
     public function map(ApiRequestInterface $request): RequestInterface
     {
@@ -28,12 +28,23 @@ final class PsrRequestMapper
             ->requestFactory
             ->createRequest(
                 $request->getMethod(),
-                $this
-                    ->uriFactory
-                    ->createUri($request->getRoute())
-                    ->withQuery(http_build_query($request->getQueryParameters())),
+                $this->createUri($request),
             )
+            ->withHeader('Accept', 'application/json')
             ->withBody($this->streamFactory->createStream($this->serializeBody($request->getBody())));
+    }
+
+    private function createUri(ApiRequestInterface $request): UriInterface
+    {
+        $uri = $this
+            ->uriFactory
+            ->createUri($request->getRoute());
+
+        if ($request->getQueryParameters() === []) {
+            return $uri;
+        }
+
+        return $uri->withQuery(http_build_query($request->getQueryParameters()));
     }
 
     private function serializeBody(mixed $body): string
